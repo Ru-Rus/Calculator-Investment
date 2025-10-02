@@ -1,4 +1,4 @@
-@if (!results) {
+@if (!results()) {
   <p class="center">Please Press the button "Calculate" to view your investment results.</p>
 }
 @else {
@@ -24,7 +24,7 @@
   </thead>
 
   <tbody>
-    @for (index of results; track index.year) {
+    @for (index of results(); track index.year) {
       <tr>
         <td>
           {{index.year}}
