@@ -1,0 +1,48 @@
+@if (!results) {
+  <p class="center">Please Press the button "Calculate" to view your investment results.</p>
+}
+@else {
+  <table>
+  <thead>
+    <tr>
+      <th>
+        Year
+      </th>
+      <th>
+        Investment Value
+      </th>
+      <th>
+        Interest Earned (Year)
+      </th>
+      <th>
+        Total Interest Earned
+      </th>
+      <th>
+        Investment Capital
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (index of results; track index.year) {
+      <tr>
+        <td>
+          {{index.year}}
+        </td>
+        <td>
+          {{index.valueEndOfYear | currency:'PHP':true}}
+        </td>
+        <td>
+          {{index.interest | currency:'PHP':true}}
+        </td>
+        <td>
+          {{index.totalInterest | currency:'PHP':true}}
+        </td>
+        <td>
+          {{index.totalAmountInvested | currency:'PHP':true}}
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+}

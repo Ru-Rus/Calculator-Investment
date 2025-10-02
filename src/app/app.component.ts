@@ -1,24 +1,28 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { UserInputComponent } from './user-input/user-input.component';
+import type { interfaceInvestmentInput } from './investment-input.model';
+import { InvestmentResultsComponent } from "./investment-results/investment-results.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, UserInputComponent],
+  imports: [HeaderComponent, UserInputComponent, InvestmentResultsComponent],
   templateUrl: './app.component.html',
 })
+
 export class AppComponent {
-onCalculate($event: Event) {
-throw new Error('Method not implemented.');
-}
-  calculateInvestmentResults( data:
-    {initialInvestment: number,
+  resultsData?:{
+        year: number,
+    interest: number,
+    valueEndOfYear: number,
     annualInvestment: number,
-    expectedReturn: number,
-    duration: number
-  }) {
-    const { initialInvestment, annualInvestment, expectedReturn, duration } = data;
+    totalInterest: number,
+    totalAmountInvested: number,
+  }[];
+
+onCalculateInvestmentResults(data:interfaceInvestmentInput) {
+      const { initialInvestment, annualInvestment, expectedReturn, duration } = data;
     const annualData = [];
     let investmentValue = initialInvestment;
 
@@ -37,8 +41,21 @@ throw new Error('Method not implemented.');
         totalAmountInvested: initialInvestment + annualInvestment * year,
       });
     }
-
-    // return annualData;
     console.log(annualData);
-  }
+    this.resultsData = annualData
+// throw new Error('Method not implemented.');
 }
+
+}
+
+// calculateInvestmentResults( data:
+//     {initialInvestment: number,
+//     annualInvestment: number,
+//     expectedReturn: number,
+//     duration: number
+//   }) {
+
+
+//     // return annualData;
+
+//   }
